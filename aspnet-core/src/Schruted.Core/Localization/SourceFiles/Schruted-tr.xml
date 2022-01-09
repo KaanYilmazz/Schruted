@@ -118,7 +118,11 @@
     <text name="ResetPasswordStepTwoInfo">2. Bu şifreyi kaydettikten sonra ilgili kullanıcıya gönderin</text>
     <text name="UsersActivation">Kullanıcıları aktifleştirme</text>
     <text name="Definition">Tanımlama</text>
+    <text name="Description">Açıklama</text>
     <text name="Input">Giriş</text>
     <text name="Stats">İstatistikler</text>
+    <text name="DoTask">Görev</text>
+    <text name="DoTasks">Görevler</text>
+    <text name="DeleteConfirm">Silmek istediğinize emin misiniz?</text>
   </texts>
 </localizationDictionary>

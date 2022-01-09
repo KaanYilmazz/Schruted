@@ -147,7 +147,7 @@
                             click:async ()=>{
                                 this.$Modal.confirm({
                                         title:this.L('Tips'),
-                                        content:this.L('DeleteTenantConfirm'),
+                                        content:this.L('DeleteConfirm'),
                                         okText:this.L('Yes'),
                                         cancelText:this.L('No'),
                                         onOk:async()=>{
