@@ -22,11 +22,11 @@
                 </div>
             </div>
         </Card>
+        <create-task v-model="createModalShow"  @save-success="getpage"></create-task>
     </div>
 </template>
 <script lang="ts">
-//        <create-task v-model="createModalShow"  @save-success="getpage"></create-task>
-//        <edit-task v-model="editModalShow"  @save-success="getpage"></edit-task>
+     //   <edit-task v-model="editModalShow"  @save-success="getpage"></edit-task>
     import { Component, Vue,Inject, Prop,Watch } from 'vue-property-decorator';
     import Util from '@/lib/util'
     import AbpBase from '@/lib/abpbase'

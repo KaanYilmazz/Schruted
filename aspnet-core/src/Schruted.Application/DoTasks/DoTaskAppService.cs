@@ -7,7 +7,6 @@ using Abp.Domain.Repositories;
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Schruted.DoTasks
 {
@@ -22,9 +21,19 @@ namespace Schruted.DoTasks
         }
 
         public async Task <DoTaskDto> CreateAsync(DoTaskDto input)
-        {            
-          var response = await _repository.InsertAsync(ObjectMapper.Map<DoTask>(input));
-          return ObjectMapper.Map<DoTaskDto>(response);
+        {
+            try
+            {
+                var response = await _repository.InsertAsync(ObjectMapper.Map<DoTask>(input));
+                return ObjectMapper.Map<DoTaskDto>(response);
+            }
+            catch (System.Exception ex)
+            {
+                var xx = ex;
+                return null;
+            }
+        
+         
         }
 
         public async Task DeleteAsync(EntityDto<int> input)

@@ -13,6 +13,7 @@ namespace Schruted.DoTasks.Dto
         public DoTaskMapProfile()
         {
             CreateMap<DoTask, DoTaskDto>();
+            CreateMap<DoTaskDto, DoTask>();
         }
     }
 }
