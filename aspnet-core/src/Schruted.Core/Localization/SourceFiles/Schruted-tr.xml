@@ -124,5 +124,6 @@
     <text name="DoTask">Görev</text>
     <text name="DoTasks">Görevler</text>
     <text name="DeleteConfirm">Silmek istediğinize emin misiniz?</text>
+    <text name="AppName">Schruted</text>
   </texts>
 </localizationDictionary>

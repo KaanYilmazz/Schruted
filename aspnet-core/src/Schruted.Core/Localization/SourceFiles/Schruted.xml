@@ -124,5 +124,6 @@
     <text name="DoTask">Task</text>
     <text name="DoTasks">Tasks</text>
     <text name="DeleteConfirm">Are you sure to delete?</text>    
+    <text name="AppName">Schruted</text>    
   </texts>
 </localizationDictionary>
