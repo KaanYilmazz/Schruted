@@ -2,21 +2,11 @@
     <div>
         <Card dis-hover>
             <div class="page-body">
-                <Form ref="queryForm" :label-width="100" label-position="left" inline>
+                <Form ref="queryForm" :label-width="90" label-position="left" inline>
                     <Row :gutter="16">
                         <Col span="8">
                             <FormItem :label="L('Keyword')+':'" style="width:100%">
-                                <Input v-model="pagerequest.keyword" :placeholder="L('TenancyName')+'/'+L('Name')"></Input>
-                            </FormItem>
-                        </Col>                 
-                        <Col span="8">
-                            <FormItem :label="L('IsActive')+':'" style="width:100%">
-                                <!--Select should not set :value="'All'" it may not trigger on-change when first select 'NoActive'(or 'Actived') then select 'All'-->
-                                <Select :placeholder="L('Select')" @on-change="isActiveChange">
-                                    <Option value="All">{{L('All')}}</Option>
-                                    <Option value="Actived">{{L('Actived')}}</Option>
-                                    <Option value="NoActive">{{L('NoActive')}}</Option>
-                                </Select>
+                                <Input v-model="pagerequest.keyword" :placeholder="L('DoTask')+'/'+L('Description')"></Input>
                             </FormItem>
                         </Col>
                     </Row>
@@ -32,59 +22,48 @@
                 </div>
             </div>
         </Card>
-        <create-tenant v-model="createModalShow" @save-success="getpage"></create-tenant>
-        <edit-tenant v-model="editModalShow" @save-success="getpage"></edit-tenant>
+        <create-task v-model="createModalShow"  @save-success="getpage"></create-task>
     </div>
 </template>
 <script lang="ts">
+     //   <edit-task v-model="editModalShow"  @save-success="getpage"></edit-task>
     import { Component, Vue,Inject, Prop,Watch } from 'vue-property-decorator';
     import Util from '@/lib/util'
     import AbpBase from '@/lib/abpbase'
     import PageRequest from '@/store/entities/page-request'
-    import CreateTenant from './create-tenant.vue'
-    import EditTenant from './edit-tenant.vue'
-    
-    class PageTenantRequest extends PageRequest{
-        keyword:string='';
-        isActive:boolean=null;
+    import CreateTask from './create-task.vue'
+    import EditTask from './edit-task.vue'
+   
+    class PageDoTaskRequest extends PageRequest{
     }
     
     @Component({
-        components:{CreateTenant,EditTenant}
+        components:{CreateTask,EditTask}
     })
-    export default class Tenants extends AbpBase{
+    export default class Definition extends AbpBase{
         edit(){
             this.editModalShow=true;
         }
-       
-        pagerequest:PageTenantRequest=new PageTenantRequest();
-        
+
+        pagerequest:PageDoTaskRequest=new PageDoTaskRequest();
+
         createModalShow:boolean=false;
         editModalShow:boolean=false;
         get list(){
-            return this.$store.state.tenant.list;
+             return this.$store.state.doTask.list;
         };
         get loading(){
-            return this.$store.state.tenant.loading;
+            return this.$store.state.doTask.loading;
         }
         create(){
             this.createModalShow=true;
         }
-        isActiveChange(val:string){
-            if(val==='Actived'){
-                this.pagerequest.isActive=true;
-            }else if(val==='NoActive'){
-                this.pagerequest.isActive=false;
-            }else{
-                this.pagerequest.isActive=null;
-            }
-        }
         pageChange(page:number){
-            this.$store.commit('tenant/setCurrentPage',page);
+            this.$store.commit('doTask/setCurrentPage',page);
             this.getpage();
         }
         pagesizeChange(pagesize:number){
-            this.$store.commit('tenant/setPageSize',pagesize);
+            this.$store.commit('doTask/setPageSize',pagesize);
             this.getpage();
         }
         async getpage(){
@@ -93,30 +72,28 @@
             this.pagerequest.skipCount=(this.currentPage-1)*this.pageSize;
             
             await this.$store.dispatch({
-                type:'tenant/getAll',
+                type:'doTask/getAll',
                 data:this.pagerequest
             })
         }
         get pageSize(){
-            return this.$store.state.tenant.pageSize;
+            return this.$store.state.doTask.pageSize;
         }
         get totalCount(){
-            return this.$store.state.tenant.totalCount;
+            return this.$store.state.doTask.totalCount;
         }
         get currentPage(){
-            return this.$store.state.tenant.currentPage;
+            return this.$store.state.doTask.currentPage;
         }
         columns=[{
-            title:this.L('TenancyName'),
-            key:'tenancyName'
-        },{
             title:this.L('Name'),
             key:'name'
         },{
-            title:this.L('IsActive'),
-            render:(h:any,params:any)=>{
-                return h('span',params.row.isActive?this.L('Yes'):this.L('No'))
-            }
+            title:this.L('Description'),
+            key:'description'
+        },{
+            title:this.L('Max Point'),
+            key:'maxPoint'
         },{
             title:this.L('Actions'),
             key:'Actions',
@@ -133,7 +110,7 @@
                         },
                         on:{
                             click:()=>{
-                                this.$store.commit('tenant/edit',params.row);
+                                this.$store.commit('doTask/edit',params.row);
                                 this.edit();
                             }
                         }
@@ -152,7 +129,7 @@
                                         cancelText:this.L('No'),
                                         onOk:async()=>{
                                             await this.$store.dispatch({
-                                                type:'tenant/delete',
+                                                type:'doTask/delete',
                                                 data:params.row
                                             })
                                             await this.getpage();
@@ -165,7 +142,7 @@
             }
         }]
         async created(){
-            this.getpage();
+            this.getpage();          
         }
     }
 </script>

@@ -117,5 +117,13 @@
     <text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
     <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
     <text name="UsersActivation">Users activation</text>
+    <text name="Definition">Definition</text>
+    <text name="Description">Description</text>
+    <text name="Input">Input</text>
+    <text name="Stats">Stats</text>
+    <text name="DoTask">Task</text>
+    <text name="DoTasks">Tasks</text>
+    <text name="DeleteConfirm">Are you sure to delete?</text>    
+    <text name="AppName">Schruted</text>    
   </texts>
 </localizationDictionary>
