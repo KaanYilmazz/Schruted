@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Schruted.EntityFrameworkCore;
 
 namespace Schruted.Migrations
 {
     [DbContext(typeof(SchrutedDbContext))]
-    partial class SchrutedDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220711132822_Add_FirstLayerDomains")]
+    partial class Add_FirstLayerDomains
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

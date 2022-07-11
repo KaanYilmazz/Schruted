@@ -14,4 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Schruted.Core\Schruted.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="WorkItems\" />
+  </ItemGroup>
 </Project>
